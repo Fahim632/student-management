@@ -1,0 +1,40 @@
+# Dependency directories (never commit these)
+node_modules/
+jspm_packages/
+
+# Debug and Log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.sample  # Usually tracked, but .env containing real keys is not
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.nuxt/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+Thumbs.db
