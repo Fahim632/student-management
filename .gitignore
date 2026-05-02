@@ -12,12 +12,12 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 # Environment variables and secrets
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.sample  # Usually tracked, but .env containing real keys is not
+# .env
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local
+# .env.sample  # Usually tracked, but .env containing real keys is not
 
 # Build outputs
 dist/

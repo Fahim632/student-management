@@ -4,17 +4,21 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 
-const { userRegistretionContoller } = require('./controllers/userCcntoller');
+const { userRegistretionContoller, userLoginController, userLogoutController } = require('./controllers/userCcntoller');
+const dbConnection = require('./config/dbConnectionConfig');
+const { profileCreateController, getShowAllProfil } = require('./controllers/profileCreateController');
 
 const app = express();
 
 app.use(express.json());
-mongoose.connect(process.env.DB_URL).then(()=>{
-    console.log("database connected");
-})
+dbConnection();
 
 app.post('/registration',userRegistretionContoller);
+app.post('/login',userLoginController);
+app.post('/logout',userLogoutController);
 
+app.post('/createprofile',profileCreateController);
+app.get('/showprofiles',getShowAllProfil);
 
 
 console.log(process.env.PORT);
