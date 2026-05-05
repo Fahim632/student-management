@@ -43,4 +43,37 @@ let getShowAllProfil = async (req,res) =>{
     })
 }
 
-module.exports = { profileCreateController,getShowAllProfil,}
+let getSingleProfile = async (req, res) => {
+    const { id } = req.params
+    let data = await profile.findOne({ _id: id })
+    res.status(200).json({
+        status: true,
+        message: `${data.name} profile`,
+        data: data,
+    })
+
+    console.log(`show ${data.name} profile`);
+}
+
+let updateProfile = async (req, res) => {
+    const { id } = req.params;
+    let data = await profile.findByIdAndUpdate({ _id: id }, req.body, { new: true })
+    res.status(200).json({
+        status: true,
+        message: "Update Successful",
+        data: data,
+    })
+}
+
+let holdProfile = async (req, res)=>{
+    const {id} = req.body;
+    let existingUser = await profile.findOne({_id:id})
+    existingUser.ishold = true;
+    existingUser.save();
+    res.status(200).json({
+        status: true,
+        message: "Hold Successful",
+    })
+}
+
+module.exports = { profileCreateController,getShowAllProfil,getSingleProfile,updateProfile,holdProfile}

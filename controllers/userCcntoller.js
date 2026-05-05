@@ -9,15 +9,15 @@ let userRegistretionContoller = async (req, res) => {
     try {
         let existingUser = await User.findOne({ email: email })
         if (existingUser) {
-            return res.status(400).json({
-                status: true,
+            return res.json({
+                status: false,
                 message: "email allready used",
             })
             // existingUser.save();
         }
 
         const hash = bcrypt.hashSync(password, 10);
-        console.log(hash);
+        // console.log(hash);
 
         let createUser = new User({
             username: username,
@@ -30,6 +30,8 @@ let userRegistretionContoller = async (req, res) => {
             id: createUser._id,
             username: createUser.username,
             email: createUser.email,
+            status: true,
+            message: "registration done",
         });
         console.log("hit");
 

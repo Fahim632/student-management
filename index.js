@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 
 const { userRegistretionContoller, userLoginController, userLogoutController } = require('./controllers/userCcntoller');
 const dbConnection = require('./config/dbConnectionConfig');
-const { profileCreateController, getShowAllProfil } = require('./controllers/profileCreateController');
+const { profileCreateController, getShowAllProfil, getSingleProfile, updateProfile, holdProfile } = require('./controllers/profileCreateController');
+var cors = require('cors')
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 dbConnection();
@@ -19,6 +21,13 @@ app.post('/logout',userLogoutController);
 
 app.post('/createprofile',profileCreateController);
 app.get('/showprofiles',getShowAllProfil);
+app.get('/getprofile/:id', getSingleProfile);
+
+//profile update
+app.post('/update/:id',updateProfile);
+
+//hold profile
+app.post('/hold',holdProfile);
 
 
 console.log(process.env.PORT);
